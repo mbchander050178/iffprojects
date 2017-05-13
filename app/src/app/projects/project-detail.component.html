@@ -1,0 +1,55 @@
+<div class="panel panel-primary" *ngIf="product">
+    <div class="panel-heading" style="font-size:large">
+        {{pageTitle + ": " + project.projectName}}
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">Name:</div>
+                    <div class="col-md-6">{{project.projectName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Code:</div>
+                    <div class="col-md-6">{{project.projectCode}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Description:</div>
+                    <div class="col-md-6">{{project.description}}</div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-3">Contributors:</div>
+                    <div class="col-md-6">{{project.contributors}}</div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-3">Category:</div>
+                    <div class="col-md-6">{{project.category}}</div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-3">Start Date:</div>
+                    <div class="col-md-6">{{project.startDate}}</div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-3">Completion Date:</div>
+                    <div class="col-md-6">{{project.completionDate}}</div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-3">Status:</div>
+                    <div class="col-md-6">{{project.status}}</div>
+                </div>
+                
+        </div>
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="onBack()" style="width:80px">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+        </a>
+        <a class="btn btn-primary" style="width:80px;margin-left:10px" 
+           [routerLink]="['/projectEdit', project.id]">
+            Edit
+        </a>
+    </div>
+</div>

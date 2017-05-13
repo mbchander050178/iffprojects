@@ -1,0 +1,66 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <!-- Filter the Projects   -->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="listFilter" />
+            </div>
+        </div>
+        <div class="row" *ngIf="listFilter">
+            <div class="col-md-6">
+                <h3>Filtered by: {{listFilter}} </h3>
+            </div>
+        </div>
+
+        <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+        <div class="table-responsive">
+            <table class="table"
+                   *ngIf="projects && projects.length">
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Project Owner</th>
+                        <th>Start Date</th>
+                        <th>Completion Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let project of projects">                        
+                        <td>
+                            <a [routerLink]="[project.projectId]" 
+                               [queryParams]="{filterBy: listFilter}">
+                            {{ project.projectName }}
+                            </a>
+                        </td>
+                        <td>{{ project.projectCode | lowercase }}</td>
+                        <td>{{ project.description }}</td>
+                        <td>{{ project.projectOwner }}</td>
+                        <td>{{ project.startDate }}</td>
+                        <td>{{ project.completionDate }}</td>
+                        <td>
+                           
+                       </td>
+                       <td>
+                            <a class="btn btn-primary" 
+                               [routerLink]="['edit', project.projectId]">
+                                Edit
+                            </a>
+                            <a class="btn btn-primary" 
+                               [routerLink]="['formulas']">
+                                View Formulas
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

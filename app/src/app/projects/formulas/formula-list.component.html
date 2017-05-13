@@ -1,0 +1,62 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <!-- Filter the Forumlas   -->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="listFilter" />
+            </div>
+        </div>
+        <div class="row" *ngIf="listFilter">
+            <div class="col-md-6">
+                <h3>Filtered by: {{listFilter}} </h3>
+            </div>
+        </div>
+
+        <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+        <div class="table-responsive">
+            <table class="table"
+                   *ngIf="formulas && formulas.length">
+                <thead>
+                    <tr>
+                        <th>Code</th>                       
+                        <th>Description</th>
+                        <th>Creator</th>
+                        <th>IPC</th>
+                        <th>endUses</th>
+                        <th>targetMarkets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let formula of formulas">                        
+                        <td>
+                            <a [routerLink]="['formulas', formula.formulaId]" 
+                               [queryParams]="{filterBy: listFilter}">
+                            {{ formula.formulaCode }}
+                            </a>
+                        </td>
+                        <td>{{ formula.description }}</td>
+                        <td>{{ formula.creator }}</td>
+                        <td>{{ formula.ipcNumber }}</td>
+                        <td>{{ formula.endUses }}</td>
+                        <td>{{ formula.targetMarkets }}</td>
+                        <td>
+                           
+                       </td>
+                       <td>
+                            <a class="btn btn-primary" 
+                               [routerLink]="['formulas', formula.formulaId]">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
